@@ -1,4 +1,2 @@
 #!/bin/bash
-
-# Compile the C file and create the executable
 gcc "$CFILE" -o cisfun
