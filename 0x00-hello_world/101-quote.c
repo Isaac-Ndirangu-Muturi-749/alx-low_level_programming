@@ -1,4 +1,4 @@
-#include <unistd.h> // For the write function
+#include <unistd.h>
 
 /**
  * main - Entry point of the program
