@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Set the C file name
+CFILE="your_c_file.c"
+
+# Extract the base file name without extension
+BASENAME=$(basename "$CFILE" .c)
+
+# Generate the assembly code using the Intel syntax and save the output
+gcc -S -masm=intel "$CFILE" -o "$BASENAME.s"
