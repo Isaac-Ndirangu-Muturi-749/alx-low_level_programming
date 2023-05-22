@@ -3,9 +3,9 @@
 #include <stdio.h>
 
 /**
- * main - This program generates a random number and prints whether it is positive, negative, or zero.
+ * main - generate a random number, prints whether positive, negative, or zero.
  *
- * Return - always 0
+ * Return: always 0
  */
 
 int main(void)
