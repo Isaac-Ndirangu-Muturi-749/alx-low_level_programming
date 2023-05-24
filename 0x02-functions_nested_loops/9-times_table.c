@@ -5,6 +5,8 @@
  *
  * Return: No return
  */
+#include "main.h"
+
 void times_table(void)
 {
 	int row, column, product;
@@ -16,24 +18,22 @@ void times_table(void)
 			product = row * column;
 			if (column == 0)
 			{
-				_putchar('0');
-			}
-			else if (product < 10)
-			{
-				_putchar(' ');
-				_putchar(' ');
-				_putchar(product + '0');
+				_putchar('0' + product);
 			}
 			else
 			{
-				_putchar(' ');
-				_putchar((product / 10) + '0');
-				_putchar((product % 10) + '0');
-			}
-			if (column != 9)
-			{
 				_putchar(',');
 				_putchar(' ');
+
+				if (product < 10)
+				{
+					_putchar(' ');
+				}
+				else
+				{
+					_putchar((product / 10) + '0');
+					_putchar((product % 10) + '0');
+				}
 			}
 		}
 		_putchar('\n');
