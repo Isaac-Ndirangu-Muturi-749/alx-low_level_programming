@@ -5,35 +5,32 @@
  *
  * Return: No return
  */
-#include "main.h"
-
 void times_table(void)
 {
-	int row, column, product;
+	int i, j, k;
 
-	for (row = 0; row <= 9; row++)
+	for (i = 0; i < 10; i++)
 	{
-		for (column = 0; column <= 9; column++)
+		for (j = 0; j < 10; j++)
 		{
-			product = row * column;
-			if (column == 0)
+			k = j * i;
+			if (j == 0)
 			{
-				_putchar('0' + product);
+				_putchar(k + '0');
 			}
-			else
+
+			if (k < 10 && j != 0)
 			{
 				_putchar(',');
 				_putchar(' ');
-
-				if (product < 10)
-				{
-					_putchar(' ');
-				}
-				else
-				{
-					_putchar((product / 10) + '0');
-					_putchar((product % 10) + '0');
-				}
+				_putchar(' ');
+				_putchar(k + '0');
+			} else if (k >= 10)
+			{
+				_putchar(',');
+				_putchar(' ');
+				_putchar((k / 10) + '0');
+				_putchar((k % 10) + '0');
 			}
 		}
 		_putchar('\n');
