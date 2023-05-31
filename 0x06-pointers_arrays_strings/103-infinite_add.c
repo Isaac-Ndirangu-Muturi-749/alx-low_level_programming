@@ -5,20 +5,19 @@
  * @n: integer params
  * Return: 0
  */
+
 void rev_string(char *n)
 {
 	int i = 0;
 	int j = 0;
 	char temp;
 
-	/* Find the length of the string */
 	while (*(n + i) != '\0')
 	{
 		i++;
 	}
 	i--;
 
-	/* Swap characters from the beginning and end of the string */
 	for (j = 0; j < i; j++, i--)
 	{
 		temp = *(n + j);
@@ -35,24 +34,23 @@ void rev_string(char *n)
  * @size_r: buffer size
  * Return: pointer to calling function
  */
+
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
 	int overflow = 0, i = 0, j = 0, digits = 0;
 	int val1 = 0, val2 = 0, temp_tot = 0;
-	/* Find the lengths of the input strings */
+
 	while (*(n1 + i) != '\0')
 		i++;
 	while (*(n2 + j) != '\0')
-		j--;
+		j++;
 	i--;
 	j--;
-	/* Check if input lengths exceed buffer size */
 	if (j >= size_r || i >= size_r)
 		return (0);
-	/* Perform addition digit by digit */
 	while (j >= 0 || i >= 0 || overflow == 1)
 	{
-		if (i < 0)/* Get the current digits to be added */
+		if (i < 0)
 			val1 = 0;
 		else
 			val1 = *(n1 + i) - '0';
@@ -60,21 +58,21 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 			val2 = 0;
 		else
 			val2 = *(n2 + j) - '0';
-		temp_tot = val1 + val2 + overflow; /* Add digits and overflow */
-		if (temp_tot >= 10)/* Check if there is an overflow */
+		temp_tot = val1 + val2 + overflow;
+		if (temp_tot >= 10)
 			overflow = 1;
 		else
 			overflow = 0;
-		if (digits >= (size_r - 1))/*Check if result exceed buffersize*/
+		if (digits >= (size_r - 1))
 			return (0);
 		*(r + digits) = (temp_tot % 10) + '0';
-		digits++;/* Store the digit in the result buffer */
+		digits++;
 		j--;
 		i--;
 	}
-	if (digits == size_r)/* Check if the result fills buffer completely */
+	if (digits == size_r)
 		return (0);
-	*(r + digits) = '\0'; /* Add null terminator to the result string */
-	rev_string(r); /* Reverse the result string */
-	return (r); /* Return the result string */
+	*(r + digits) = '\0';
+	rev_string(r);
+	return (r);
 }
