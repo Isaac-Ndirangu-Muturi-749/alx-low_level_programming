@@ -6,24 +6,17 @@
  */
 void print_number(int n)
 {
-	int divisor = 1;
+	unsigned int n1;  /*Variable to store the absolute value of n*/
 
-	/* Handle negative numbers */
+	n1 = (n < 0) ? -n : n;  /* Assign absolute value of n to n1*/
+
 	if (n < 0)
-	{
-		_putchar('-');
-		n *= -1;
-	}
+		_putchar('-');  /*Print '-' sign for negative numbers*/
 
-	/* Determine the divisor */
-	while (n / divisor >= 10)
-		divisor *= 10;
+	/*Check if there are more digits to print*/
+	/*Recursively call the function to print remaining digits*/
+	if (n1 / 10 != 0)
+		print_number(n1 / 10);
 
-	/* Print each digit */
-	while (divisor != 0)
-	{
-		_putchar('0' + n / divisor);
-		n %= divisor;
-		divisor /= 10;
-	}
+	_putchar((n1 % 10) + '0');  /*Print the rightmost digit using _putchar*/
 }
