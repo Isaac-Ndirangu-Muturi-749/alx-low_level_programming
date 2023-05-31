@@ -18,6 +18,7 @@ char *_strncat(char *dest, char *src, int n)
 		dest_len++;
 
 	/* Append at most n bytes from the source string to the destination */
+	i = 0;
 	while (i < n && src[i] != '\0')
 	{
 		dest[dest_len] = src[i];
