@@ -6,24 +6,22 @@
  */
 void print_number(int n)
 {
-	int divisor = 1;
+	unsigned int num;
 
-	/* Handle negative numbers */
 	if (n < 0)
 	{
 		_putchar('-');
-		n *= -1;
+		num = -n;
 	}
-
-	/* Determine the divisor */
-	while (n / divisor >= 10)
-		divisor *= 10;
-
-	/* Print each digit */
-	while (divisor != 0)
+	else
 	{
-		_putchar('0' + n / divisor);
-		n %= divisor;
-		divisor /= 10;
+		num = n;
 	}
+
+	if (num / 10)
+	{
+		print_number(num / 10);
+	}
+
+	_putchar((num % 10) + '0');
 }
