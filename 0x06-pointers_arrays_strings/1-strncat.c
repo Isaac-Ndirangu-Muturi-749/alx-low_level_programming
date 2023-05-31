@@ -13,10 +13,11 @@ char *_strncat(char *dest, char *src, int n)
 	int dest_len = 0;
 	int i;
 
-	/*Find the length of the destination string*/
+	/* Find the length of the destination string */
 	while (dest[dest_len] != '\0')
 		dest_len++;
-	/*Append at most n bytes from the source string to the destination*/
+
+	/* Append at most n bytes from the source string to the destination */
 	while (i < n && src[i] != '\0')
 	{
 		dest[dest_len] = src[i];
@@ -24,7 +25,7 @@ char *_strncat(char *dest, char *src, int n)
 		i++;
 	}
 
-	/*Add a terminating null byte at the end*/
+	/* Add a terminating null byte at the end */
 	dest[dest_len] = '\0';
 
 	return (dest);
