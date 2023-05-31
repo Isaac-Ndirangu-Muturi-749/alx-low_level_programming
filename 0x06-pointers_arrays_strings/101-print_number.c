@@ -1,28 +1,29 @@
 #include "main.h"
 
 /**
- * print_number - a function that prints an integer.
- * @n: integer to be printed
- * Return: 0
+ * print_number - Prints an integer.
+ * @n: The integer to be printed.
  */
 void print_number(int n)
 {
-	unsigned int n1;
+	int divisor = 1;
 
-	n1 = n;
-
+	/* Handle negative numbers */
 	if (n < 0)
 	{
 		_putchar('-');
-		n1 = -n;
+		n *= -1;
 	}
 
-	/* Recursive call to print each digit */
-	if (n1 / 10 != 0)
+	/* Determine the divisor */
+	while (n / divisor >= 10)
+		divisor *= 10;
+
+	/* Print each digit */
+	while (divisor != 0)
 	{
-		print_number(n1 / 10);
+		_putchar('0' + n / divisor);
+		n %= divisor;
+		divisor /= 10;
 	}
-
-	/* Print the current digit */
-	_putchar((n1 % 10) + '0');
 }
