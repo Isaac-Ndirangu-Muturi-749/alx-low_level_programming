@@ -1,28 +1,35 @@
 #include "main.h"
 
 /**
- * print_number - a function that prints an integer.
- * @n: integer to be printed
- * Return: 0
+ * rot13 - Encodes a string using ROT13 algorithm.
+ * @str: The string to be encoded.
+ *
+ * Return: A pointer to the encoded string.
  */
-void print_number(int n)
+char *rot13(char *str)
 {
-	unsigned int n1;
+	int i = 0;
+	int j;
+	char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char rot13[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
-	n1 = n;
-
-	if (n < 0)
+	/* Iterate through each character of the string */
+	while (str[i] != '\0')
 	{
-		_putchar('-');
-		n1 = -n;
+		j = 0;
+		/* Check if the character is an alphabet letter */
+		while (alphabet[j] != '\0')
+		{
+			if (str[i] == alphabet[j])
+			{
+				/* Replace the character with its ROT13 equivalent */
+				str[i] = rot13[j];
+				break;
+			}
+			j++;
+		}
+		i++;
 	}
 
-	/* Recursive call to print each digit */
-	if (n1 / 10 != 0)
-	{
-		print_number(n1 / 10);
-	}
-
-	/* Print the current digit */
-	_putchar((n1 % 10) + '0');
+	return (str);
 }
