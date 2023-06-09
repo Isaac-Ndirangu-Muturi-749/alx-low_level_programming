@@ -8,19 +8,33 @@
  */
 int is_prime_number(int n)
 {
-	int i;
-
-	/* Base cases */
+	/* Base cases Numbers less than or equal to 1 are not prime */
 	if (n <= 1)
-		return (0); /* Numbers less than or equal to 1 are not prime */
+		return (0);
+
+	/* Call helper function to check divisibility */
+	return (is_prime_helper(n, 2));
+}
+
+/**
+ * is_prime_helper - helper function to check divisibility recursively
+ * @n: input number
+ * @divisor: current divisor being checked
+ *
+ * Return: 1 if n is prime, 0 otherwise
+ */
+int is_prime_helper(int n, int divisor)
+{
+	/* Base case: divisor exceeds the square root of n */
+	/* n is not divisible by any numbers, so it is prime */
+	if (divisor * divisor > n)
+		return (1);
 
 	/* Check for divisibility */
+	/* n is divisible by divisor, so it is not prime */
+	if (n % divisor == 0)
+		return (0);
 
-	for (i = 2; i * i <= n; i++)
-	{
-		if (n % i == 0)
-			return (0); /* n is divisibleby i, so it is not prime */
-	}
-
-	return (1); /* n is not divisible by any numbers, so it is prime */
+	/* Recursively check with the next divisor */
+	return (is_prime_helper(n, divisor + 1));
 }
