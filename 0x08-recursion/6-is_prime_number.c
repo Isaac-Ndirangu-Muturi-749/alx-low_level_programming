@@ -8,12 +8,14 @@
  */
 int is_prime_number(int n)
 {
+	int i;
+
 	/* Base cases */
 	if (n <= 1)
 		return (0); /* Numbers less than or equal to 1 are not prime */
 
 	/* Check for divisibility */
-	int i;
+
 	for (i = 2; i * i <= n; i++)
 	{
 		if (n % i == 0)
