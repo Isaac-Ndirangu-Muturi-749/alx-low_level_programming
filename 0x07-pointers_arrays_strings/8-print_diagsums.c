@@ -8,21 +8,23 @@
  */
 void print_diagsums(int *a, int size)
 {
-	int i;
-	int sum1 = 0; /* Sum of the main diagonal */
-	int sum2 = 0; /* Sum of the secondary diagonal */
+	int sum1, sum2, y;
 
-	/* Calculate the sum of the main diagonal and the secondary diagonal */
-	for (i = 0; i < size; i++)
+	sum1 = 0;
+	sum2 = 0;
+
+	/* Calculate the sum of the main diagonal */
+	for (y = 0; y < size; y++)
 	{
-		/* Elements on the main diagonal have same row & column index */
-		sum1 += a[i * size + i];
-		/* Elements on the secondary diagonal have the row index*/
-		/*  increasing and the column index decreasing */
-		sum2 += a[i * size + (size - 1 - i)];
+		sum1 = sum1 + a[y * size + y];
 	}
 
-	/* Print the sum of the diagonals */
-	printf("Sum of main diagonal: %d\n", sum1);
-	printf("Sum of secondary diagonal: %d\n", sum2);
+	/* Calculate the sum of the secondary diagonal */
+	for (y = size - 1; y >= 0; y--)
+	{
+		sum2 += a[y * size + (size - y - 1)];
+	}
+
+	/* Print the sums of the diagonals */
+	printf("%d, %d\n", sum1, sum2);
 }
