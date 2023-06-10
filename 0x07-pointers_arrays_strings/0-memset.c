@@ -6,24 +6,16 @@
  * @b: The constant byte to fill the memory with.
  * @n: The number of bytes to be filled.
  *
- * Return: A pointer to the memory area s.
+ * Return: A pointer to the memory area @s.
  */
 char *_memset(char *s, char b, unsigned int n)
 {
-	/* Convert the constant byte to unsigned char */
-	unsigned char byte = (unsigned char)b;
+	unsigned int i;  /* Loop counter */
 
-	/* Iterate through each byte in the memory area */
-	while (n > 0)
+	for (i = 0; i < n; i++)
 	{
-		/* Fill the byte with the constant value */
-		*s = byte;
-
-		/* Move to the next byte in the memory area */
-		s++;
-		n--;
+		s[i] = b;  /* Fill each byte with the constant value */
 	}
 
-	/* Return the pointer to the memory area */
-	return (s);
+	return (s);  /* Return the pointer to the memory area */
 }
