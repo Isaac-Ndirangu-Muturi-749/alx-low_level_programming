@@ -4,21 +4,26 @@
  * _memset - Fills memory with a constant byte.
  * @s: Pointer to the memory area to be filled.
  * @b: The constant byte to fill the memory with.
- * @n: Number of bytes to be filled.
+ * @n: The number of bytes to be filled.
  *
  * Return: A pointer to the memory area s.
  */
 char *_memset(char *s, char b, unsigned int n)
 {
-    unsigned int i;
+	/* Convert the constant byte to unsigned char */
+	unsigned char byte = (unsigned char)b;
 
-    /* Iterate over each byte in the memory area */
-    for (i = 0; i < n; i++)
-    {
-        /* Fill the current byte with the constant byte */
-        s[i] = b;
-    }
+	/* Iterate through each byte in the memory area */
+	while (n > 0)
+	{
+		/* Fill the byte with the constant value */
+		*s = byte;
 
-    /* Return the pointer to the memory area */
-    return (s);
+		/* Move to the next byte in the memory area */
+		s++;
+		n--;
+	}
+
+	/* Return the pointer to the memory area */
+	return (s);
 }
