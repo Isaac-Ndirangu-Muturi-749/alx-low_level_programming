@@ -28,6 +28,7 @@ int count_words(char *str)
 			is_word = 0;
 		}
 	}
+
 	return (count);
 }
 
@@ -68,15 +69,14 @@ char **strtow(char *str)
 				free(word_array);
 				return (NULL);
 			}
+
 			strncpy(word_array[j], str + i, len);
 			word_array[j][len] = '\0';
 			i += len;
 			j++;
 		}
 		else
-		{
 			i++;
-		}
 	}
 	word_array[j] = NULL;
 	return (word_array);
