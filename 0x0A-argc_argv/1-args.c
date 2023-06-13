@@ -10,6 +10,7 @@
  */
 int main(int argc, char *argv[])
 {
+	(void) argv; /*Ignore argv*/
 	/* Print the number of arguments (excluding the program name) */
 	printf("%d\n", argc - 1);
 
