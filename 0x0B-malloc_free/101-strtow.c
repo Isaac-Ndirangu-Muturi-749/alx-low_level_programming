@@ -1,14 +1,13 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include "main.h"
 
 /**
- * count_words - counts the number of words in a string
- * @s: input string
+ * count_word - helper function to count the number of words in a string
+ * @s: string to evaluate
  *
  * Return: number of words
  */
-int count_words(char *s)
+int count_word(char *s)
 {
 	int flag, c, w;
 
@@ -29,7 +28,6 @@ int count_words(char *s)
 	return (w);
 }
 
-
 /**
  * **strtow - splits a string into words
  * @str: string to split
@@ -37,42 +35,46 @@ int count_words(char *s)
  * Return: pointer to an array of strings (Success)
  * or NULL (Error)
  */
-	char **strtow(char *str)
+char **strtow(char *str)
+{
+	char **matrix, *tmp;
+	int i, k = 0, len = 0, words, c = 0, start, end;
+
+	while (*(str + len))/* Calculate the length of the input string */
+		len++;
+	words = count_word(str);/* Count the number of words in input string */
+	if (words == 0)
+		return (NULL);
+	/* Allocate memory for the matrix of words */
+	matrix = (char **)malloc(sizeof(char *) * (words + 1));
+	if (matrix == NULL)
+		return (NULL);
+	for (i = 0; i <= len; i++)/* Iterate string to split it into words */
 	{
-		char **matrix, *tmp;
-		int i, k = 0, len = 0, words, c = 0, start, end;
-
-		while (*(str + len))
-			len++;
-		words = count_word(str);
-		if (words == 0)
-			return (NULL);
-		matrix = (char **) malloc(sizeof(char *) * (words + 1));
-		if (matrix == NULL)
-			return (NULL);
-
-		for (i = 0; i <= len; i++)
+		if (str[i] == ' ' || str[i] == '\0')
 		{
-			if (str[i] == ' ' || str[i] == '\0')
+			if (c)/* Check if a word has been found */
 			{
-				if (c)
-				{
-					end = i;
-					tmp = (char *) malloc(sizeof(char) * (c + 1));
-					if (tmp == NULL)
-						return (NULL);
-					while (start < end)
-						*tmp++ = str[start++];
-					*tmp = '\0';
-					matrix[k] = tmp - c;
-					k++;
-					c = 0;
-				}
+				end = i;
+				/* Allocate memory for the word */
+				tmp = (char *)malloc(sizeof(char) * (c + 1));
+				if (tmp == NULL)
+					return (NULL);
+				/* Copy the word into the allocated memory */
+				while (start < end)
+					*tmp++ = str[start++];
+				*tmp = '\0';
+				/* Store the word in the matrix */
+				matrix[k] = tmp - c;
+				k++;
+				c = 0;
 			}
-			else if (c++ == 0)
-				start = i;
 		}
-
-		matrix[k] = NULL
-			return (matrix);
+		else if (c++ == 0)
+			start = i;
 	}
+
+	matrix[k] = NULL;/* Set the last element of the matrix to NULL */
+
+	return (matrix);
+}
