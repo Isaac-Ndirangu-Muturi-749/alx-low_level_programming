@@ -10,8 +10,8 @@
  */
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
-	void *ptr;
-	unsigned int total_size;
+	char *ptr;
+	unsigned int i, total_size;
 
 	/* Check if nmemb or size is 0 */
 	if (nmemb == 0 || size == 0)
@@ -27,8 +27,9 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 	if (ptr == NULL)
 		return (NULL);
 
-	/* Set the allocated memory to zero using memset */
-	memset(ptr, 0, total_size);
+	/* Set the allocated memory to zero */
+	for (i = 0; i < total_size; i++)
+		ptr[i] = 0;
 
 	/* Return the pointer to the allocated memory */
 	return (ptr);
