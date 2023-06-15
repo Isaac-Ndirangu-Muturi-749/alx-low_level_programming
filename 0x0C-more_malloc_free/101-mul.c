@@ -3,56 +3,58 @@
 #include <ctype.h>
 
 /**
- * is_positive_number - checks if a string represents a positive number
- * @str: string to check
+ * multiply_numbers - Multiplies two positive numbers
+ * @num1: First number
+ * @num2: Second number
  *
- * Description: This function checks if a string contains only digits,
- *              indicating a positive number.
+ * Description: This function multiplies two
+ * positive numbers and prints the result.
  *
- * Return: 1 if the string represents a positive number, 0 otherwise
- */
-int is_positive_number(char *str)
-{
-	int i = 0;
-
-	/* Iterate through the characters of the string */
-	while (str[i] != '\0')
-	{
-		/* Check if the character is a digit */
-		if (!isdigit(str[i]))
-			return (0);
-		i++;
-	}
-
-	return (1);
-}
-
-
-
-/**
- * multiply_numbers - multiplies two positive numbers
- * @num1: first number
- * @num2: second number
+ * It performs the multiplication using an
+ * algorithm similar to long multiplication.
  *
- * Description: This function multiplies two positive numbers
- *              and prints the result.
- *
- * Return: void
+ * Return: None
  */
 void multiply_numbers(char *num1, char *num2)
 {
-	int result;
-
-	/* Check if num1 and num2 are positive numbers */
-	if (!is_positive_number(num1) || !is_positive_number(num2))
+	int len1 = 0, len2 = 0, i, j, carry;
+	int *result, product, num1_digit, num2_digit;
+	/* Calculate the lengths of the input numbers */
+	while (num1[len1])
+		len1++;
+	while (num2[len2])
+		len2++;
+	/* Allocate memory to store the result */
+	result = malloc(sizeof(int) * (len1 + len2));
+	if (result == NULL)
 	{
-		/* Terminate the process with status value 98 */
 		exit(98);
 	}
+	/* Initialize the result array */
+	for (i = 0; i < len1 + len2; i++)
+		result[i] = 0;
+	for (i = len1 - 1; i >= 0; i--)/* Perform the multiplication */
+	{
+		carry = 0;
+		for (j = len2 - 1; j >= 0; j--)
+		{
+			num1_digit = num1[i] - '0';
+			num2_digit = num2[j] - '0';
+			product = num1_digit * num2_digit + result[i + j + 1] + carry;
 
-	/* Perform the multiplication */
-	result = atoi(num1) * atoi(num2);
+			carry = product / 10;
+			result[i + j + 1] = product % 10;
+		}
 
+		result[i] += carry;
+	}
+	/* Skip leading zeros in the result */
+	i = 0;
+	while (i < len1 + len2 - 1 && result[i] == 0)
+		i++;
 	/* Print the result */
-	printf("%d\n", result);
+	while (i < len1 + len2)
+		printf("%d", result[i++]);
+	printf("\n");
+	free(result);
 }
