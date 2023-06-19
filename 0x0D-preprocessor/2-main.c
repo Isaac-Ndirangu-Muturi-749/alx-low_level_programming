@@ -7,8 +7,8 @@
  * Return: 0 if successful
  */
 
-int main()
+int main(void)
 {
-	printf("Compiled from file: %s\n", __FILE__);
+	printf("%s\n", __FILE__);
 	return (0);
 }
