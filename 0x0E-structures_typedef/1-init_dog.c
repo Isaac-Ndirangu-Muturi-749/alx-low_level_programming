@@ -9,17 +9,17 @@
  * @owner: owner of the dog
  *
  * Description: This function initializes a struct dog with the given values.
- *              If struct pointer is NULL it allocates memory for the struct.
+ *              If struct pointer is NULL, it allocates memory for the struct.
  *
  * Return: void
  */
 void init_dog(struct dog* d, char* name, float age, char* owner)
 {
-	if (d == NULL) /* Check if the struct pointer is NULL*/
+	if (d == NULL) /*Check if the struct pointer is NULL*/
 	{
 		/* If so, allocate memory for the struct*/
 		d = malloc(sizeof(struct dog));
-		/* If memory allocation fails, return nothing immediately*/
+		/* If memory allocation fails, return immediately*/
 		if (d == NULL)
 			return;
 	}
