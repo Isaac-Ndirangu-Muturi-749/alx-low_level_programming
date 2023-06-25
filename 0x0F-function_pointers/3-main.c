@@ -1,7 +1,7 @@
-#include "3-calc.h"
-#include <stdio.h>
-#include <stdlib.h>
 #include "function_pointers.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include "3-calc.h"
 
 /**
  * main - Entry point of the program
@@ -10,17 +10,7 @@
  *
  * Return: 0 on success, otherwise 98, 99, or 100 for specific errors
  */
-#include "function_pointers.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include "3-calc.h"
-/**
- * main - Prints the result of simple operations.
- * @argc: The number of arguments supplied to the program.
- * @argv: An array of pointers to the arguments.
- *
- * Return: Always 0.
- */
+
 int main(int __attribute__((__unused__)) argc, char *argv[])
 {
 	int num1, num2;
