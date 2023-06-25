@@ -13,10 +13,10 @@
  *              to by 'action' with the current element as an argument.
  *
  * Return: void
- **/
+ */
 void array_iterator(int *array, size_t size, void (*action)(int))
 {
-	int i;
+	unsigned int i;
 
 	/* Check if array or action is a null pointer */
 	if (array == NULL || action == NULL)
