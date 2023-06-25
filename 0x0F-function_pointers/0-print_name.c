@@ -11,7 +11,7 @@
  *              function pointed to by `f` with the `name` as the argument.
  *
  * Return: void
- **/
+ */
 void print_name(char *name, void (*f)(char *))
 {
 	/* Check if either name or f is a null pointer*/
