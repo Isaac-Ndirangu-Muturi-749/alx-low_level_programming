@@ -6,46 +6,47 @@
  * print_all - Prints anything based on the format specifier.
  * @format: A list of types of arguments passed to the function.
  */
+
 void print_all(const char * const format, ...)
 {
-	va_list args; /* Declare va_list variable to hold variable arguments */
-	unsigned int i = 0;
-	char *separator = ""; /* Initialize separator to an empty string */
-	char *str;
+	int i = 0; /* Initialize counter variable */
+	char *str; /* Declare string variables and*/
+	char *sep = ""; /* initialize separator */
+	va_list list; /* Declare va_list variable to hold variable arguments */
 
-	va_start(args, format);/* Initialize va_list var with va_start macro*/
-	while (format && format[i])/* Iterate through the format string */
+	/* Initialize va_list variable with va_start macro */
+	va_start(list, format);
+	if (format) /* Check if format is not NULL */
 	{
-		switch (format[i]) /* Check the current character in format */
+		while (format[i]) /* Iterate through the format string */
 		{
-			/* Print a character */
-		case 'c':
-			printf("%s%c", separator, va_arg(args, int));
-			break;
-			/* Print an integer */
-		case 'i':
-			printf("%s%d", separator, va_arg(args, int));
-			break;
-			/* Print a float */
-		case 'f':
-			printf("%s%f", separator, va_arg(args, double));
-			break;
-			/* Retrieve the next argument of type char* */
-		case 's':
-			str = va_arg(args, char *);
-			/* If string is NULL, set it to (nil) */
-			if (str == NULL)
-				str = "(nil)";
-			/* Print the string */
-			break;
-			printf("%s%s", separator, str);
-		default:
-			i++; /* Ignore any other character */
-			continue;
+			/* Check the current character in format */
+			switch (format[i])
+			{
+			case 'c':/* Print a character */
+				printf("%s%c", sep, va_arg(list, int));
+				break;
+			case 'i':/* Print an integer */
+				printf("%s%d", sep, va_arg(list, int));
+				break;
+			case 'f':/* Print a float */
+				printf("%s%f", sep, va_arg(list, double));
+				break;
+			case 's':
+				/* Retrieve the next argument of type char* */
+				str = va_arg(list, char *);
+				if (!str)/* If string is NULL, set it to (nil)*/
+					str = "(nil)";
+				printf("%s%s", sep, str); /* Print the string */
+				break;
+			default:
+				i++; /* Ignore any other character */
+				continue;
+			}
+			sep = ", "; /* Update the separator to separate values */
+			i++;
 		}
-		separator = ", ";/* Update the separator to separate values */
-		i++;
 	}
-	va_end(args); /* Clean up the va_list variable with va_end macro */
 	printf("\n"); /* Print a new line at the end */
+	va_end(list);/* Clean up the va_list variable with va_end macro */
 }
