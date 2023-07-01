@@ -1,4 +1,4 @@
-#include "main.h"
+#include <stdio.h>
 
 /* ensure that the function is called automatically during*/
 /*program startup, before the main() function is executed*/
