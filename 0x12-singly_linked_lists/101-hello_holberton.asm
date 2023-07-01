@@ -1,17 +1,13 @@
-section .data
-    hello db 'Hello, Holberton', 0
-    format db "%s", 0
+        global  main           ; Declare the entry point of the program
 
-section .text
-    global main
-    extern printf
+        extern  printf         ; Declare the printf function from the C library
 
 main:
-    sub rsp, 8    ; Align stack to 16-byte boundary
-    mov edi, format
-    mov rsi, hello
-    xor eax, eax  ; Clear eax register (function return value)
-    call printf
-    add rsp, 8    ; Restore stack
-    mov eax, 0    ; Return 0 from main
-    ret
+        mov     edi, format    ; Move address of format string into edi register
+        xor     eax, eax       ; Clear the eax register (function return value)
+        call    printf         ; Call the printf function
+        mov     eax, 0         ; Set the return value of the main function to 0
+        ret                    ; Return from the main function
+
+format:
+        db      'Hello, Holberton', 0x0A, 0   ; Define format string with newline characte
