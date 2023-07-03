@@ -8,20 +8,21 @@
  */
 size_t print_listint(const listint_t *h)
 {
-    size_t count = 0;
+	size_t count = 0;
 
-    /* Iterate through the list */
-    while (h)
-    {
-        /* Print the value of the current node */
-        printf("%d\n", h->n);
-        /* Move to the next node */
-        h = h->next;
+	/* Iterate through the list */
+	while (h)
+	{
+		/* Print the value of the current node */
+		printf("%d\n", h->n);
 
-        /* Increment the count of nodes */
-        count++;
-    }
+		/* Move to the next node */
+		h = h->next;
 
-    /* Return the number of nodes */
-    return (count);
+		/* Increment the count of nodes */
+		count++;
+	}
+
+	/* Return the number of nodes */
+	return (count);
 }
