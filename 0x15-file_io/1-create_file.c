@@ -17,11 +17,18 @@ int create_file(const char *filename, char *text_content)
 {
 	int fileDescriptor;
 	ssize_t bytesWritten;
-	int size = strlen(text_content);
+	int len = 0;
 
 	/* Check if filename is NULL */
 	if (filename == NULL)
 		return (-1);
+
+	/* Calculate the length of the text content */
+	if (text_content != NULL)
+	{
+		for (len = 0; text_content[len];)
+			len++;
+	}
 
 	/* Open the file in write-only mode, create it if it doesn't exist*/
 	/* call the open system call to open the file specified by */
@@ -35,7 +42,6 @@ int create_file(const char *filename, char *text_content)
 	fileDescriptor = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0600);
 	if (fileDescriptor == -1)/*cannot open*/
 		return (-1);
-
 	/* If text_content is not NULL, write the content to the file */
 	if (text_content != NULL)
 	{
@@ -46,7 +52,6 @@ int create_file(const char *filename, char *text_content)
 			return (-1);
 		}
 	}
-
 	/* Close the file descriptor */
 	close(fileDescriptor);
 	return (1);
