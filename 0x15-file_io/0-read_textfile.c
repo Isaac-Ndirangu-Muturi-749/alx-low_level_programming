@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include "main.h"
+
 /**
  * read_textfile - Write a function that reads a text file and
  * prints it to the POSIX standard output
@@ -18,7 +19,7 @@
 ssize_t read_textfile(const char *filename, size_t letters)
 {
 	ssize_t bytesRead, bytesWritten;
-	char *buffer[letters];
+	char *buffer;
 	int fileDescriptor;
 
 	/* Check if filename is NULL */
@@ -30,31 +31,31 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	if (fileDescriptor == -1)/*cannot open*/
 		return (0);
 
+	/* Allocate memory for the buffer */
+	buffer = malloc(sizeof(char) * letters);
+
 	/*declares a character array called buffer with a size of letters.*/
 	/*maximum number of characters to read from the file*/
-
 	/* Read data from the file into the buffer */
 	/* The read system call is used to read data from the file associated */
 	/*with fileDescriptor. It reads up to sizeof(buffer) bytes from the */
 	/*file and stores them in the buffer array. The actual number of bytes*/
 	/*read is assigned to the bytesRead variable.*/
-	bytesRead = read(fileDescriptor, buffer, sizeof(buffer));
+	bytesRead = read(fileDescriptor, buffer, letters);
 	if (bytesRead == -1)
 	{
 		close(fileDescriptor);
 		return (0);
 	}
-
 	/* Write the content of the buffer to the standard output */
 	bytesWritten = write(STDOUT_FILENO, buffer, bytesRead);
-
-	/* Close the file descriptor */
-	close(fileDescriptor);
-
 	/* Check if the write operation was successful */
 	if (bytesWritten == -1 || bytesWritten != bytesRead)
 		return (0);
-
+	/* Free the allocated buffer memory */
+	free(buffer);
+	/* Close the file descriptor */
+	close(fileDescriptor);
 	/* Return the number of bytes written */
 	return (bytesWritten);
 }
