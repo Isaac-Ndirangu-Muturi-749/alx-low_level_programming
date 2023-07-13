@@ -45,7 +45,7 @@ int create_file(const char *filename, char *text_content)
 	/* If text_content is not NULL, write the content to the file */
 	if (text_content != NULL)
 	{
-		bytesWritten = write(fileDescriptor, text_content, size);
+		bytesWritten = write(fileDescriptor, text_content, len);
 		if (bytesWritten == -1)
 		{
 			close(fileDescriptor);
