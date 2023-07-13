@@ -4,6 +4,15 @@
 #include <unistd.h>
 #include "main.h"
 
+/**
+ * create_file - Create a function that creates a file.
+ * @filename: name of the file to create
+ * @text_content: a NULL terminated string to write to the file
+ *
+ * Return: 1 on success, -1 on failure
+ *         if filename is NULL return -1
+ */
+
 int create_file(const char *filename, char *text_content)
 {
 	int fileDescriptor;
@@ -20,10 +29,10 @@ int create_file(const char *filename, char *text_content)
 	/*opened in write-only mode. The O_CREAT flag specifies that */
 	/*the file should be created if it doesn't already exist. */
 	/*The O_TRUNC flag ensures that file is truncated (emptied)*/
-	/*if it already exists. The S_IRUSR | S_IWUSR argument sets*/
+	/*if it already exists.set permissions to 0600 */
 	/*the permissions to rw-------, allowing read and write */
 	/*access only for the file owner.*/
-	fileDescriptor = open(filename, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
+	fileDescriptor = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0600);
 	if (fileDescriptor == -1)/*cannot open*/
 		return (-1);
 
