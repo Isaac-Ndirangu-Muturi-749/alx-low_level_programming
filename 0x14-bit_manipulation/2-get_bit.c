@@ -9,11 +9,14 @@
  */
 int get_bit(unsigned long int n, unsigned int index)
 {
-	if (index >= (sizeof(unsigned long int) * 8)) /* Check if the index is out of range */
-		return -1;
+	/* Check if the index is out of range */
+	if (index >= (sizeof(unsigned long int) * 8))
+		return (-1);
 
-	unsigned long int mask = 1ul << index; /* Create a mask with a 1 at the index position */
-	int bit = (n & mask) != 0; /* Perform bitwise AND to extract the bit and check if it is non-zero */
+	/* Create a mask with a 1 at the index position */
+	unsigned long int mask = 1ul << index;
+	/* Perform bitwise AND to extract the bit and check if it is non-zero */
+	int bit = (n & mask) != 0;
 
-	return bit;
+	return (bit);
 }
