@@ -15,10 +15,11 @@ int get_bit(unsigned long int n, unsigned int index)
 	if (index >= (sizeof(unsigned long int) * 8))
 		return (-1);
 
-	/* Create a mask with a 1 at the index position */
-	unsigned long int mask = 1ul << index;
-	/* Perform bitwise AND to extract the bit and check if it is non-zero */
-	bit = (n & mask) != 0;
+	/* Shift the number 'n' right by 'index' positions*/
+	/* and perform a bitwise AND with 1*/
+	/* This isolates the bit at the specified index*/
+	bit = (n >> index) & 1;
 
+	/* Return the value of the bit*/
 	return (bit);
 }
