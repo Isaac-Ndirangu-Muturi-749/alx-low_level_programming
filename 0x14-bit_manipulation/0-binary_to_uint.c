@@ -1,29 +1,49 @@
 #include "main.h"
 
 /**
- * binary_to_uint - Converts a binary number to an unsigned int.
- * @b: Pointer to the string containing the binary number.
+ * binary_to_uint - converts a binary number to an unsigned int
+ * @b: pointer to the binary string
  *
- * Return: The converted unsigned int number, or 0 if an error occurs.
+ * Return: the converted number, or
+ *         0 if there is an invalid character or b is NULL
  */
 unsigned int binary_to_uint(const char *b)
 {
+	/* Variable to store the converted number*/
 	unsigned int result = 0;
-	unsigned int i;
+	int i;
 
-	if (b == NULL) /* Check if the input string is NULL */
+	/* Check if the string pointer is NULL, if so, return 0*/
+	if (b == NULL)
 		return (0);
 
+	/* Iterate through each character of the string*/
+	/*until the null terminator is encountered*/
 	for (i = 0; b[i] != '\0'; i++)
 	{
-		/* Check if the character is not '0' or '1' */
-		if (b[i] != '0' && b[i] != '1')
+		/* Check if the current character is '0'*/
+		if (b[i] == '0')
+		{
+			/* Shift the result left by 1 position*/
+			/*(equivalent to multiplying by 2)*/
+			result = result << 1;
+
+		}
+
+		/* Check if the current character is '1'*/
+		else if (b[i] == '1')
+		{
+			/* Shift the result left by 1 position and*/
+			/* set the least significant bit to 1*/
+			/*(equivalent to multiplying by 2 and adding 1)*/
+			result = (result << 1) | 1;
+		}
+		/* If the current character is neither '0' nor '1',*/
+		/*return 0 (invalid character)*/
+		else
 			return (0);
-		/*multiplying the current value by 2 (left shift by 1) and*/
-		/*adding the decimal value of the binary digit to it.*/
-		/* Left shift the result by 1 and add the binary digit to it */
-		result = (result << 1) + (b[i] - '0');
 	}
 
-	return (result); /* Return the converted unsigned int number */
+	/* Return the converted unsigned int value stored in 'result'*/
+	return (result);
 }
