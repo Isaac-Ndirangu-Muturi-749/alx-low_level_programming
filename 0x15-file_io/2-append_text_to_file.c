@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include "main.h"
 /**
- * append_text_to_file - Write a function that appends text at the end of a file
+ * append_text_to_file - Write a function that appends text at the end of file
  * @filename: is the name of the file
  * @text_content: is the NULL terminated string to add at the end of the file
  *
