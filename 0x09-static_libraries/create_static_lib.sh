@@ -11,5 +11,3 @@ ranlib liball.a
 
 # Clean up intermediate .o files
 rm *.o
-
-echo "Static library liball.a created successfully!"
