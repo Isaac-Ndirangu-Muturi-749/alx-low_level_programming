@@ -1,45 +1,55 @@
 #include "lists.h"
 
 /**
- * delete_dnodeint_at_index - Deletes the node at index in a dlistint_t linked list.
- *
- * @head: A pointer to a pointer to the head of the list.
- * @index: The index of the node to be deleted. Index starts at 0.
- * Return: 1 if it succeeded, -1 if it failed.
+ * delete_dnodeint_at_index - deletes the node at a given index of a list.
+ * @head: A pointer to the pointer to the head of the list.
+ * @index: The index of the node to delete, starting from 0.
+ * Return: 1 on success, -1 on failure.
  */
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
-	dlistint_t *current, *temp;
-	unsigned int i = 0;
+    unsigned int count;
+    dlistint_t *tmp;
 
-	if (*head == NULL)
-		return (-1);
+    if (*head == NULL || head == NULL)
+        return (-1);
 
-	current = *head;
-	if (index == 0)
-	{
-		/* If the first node needs to be deleted */
-		*head = current->next; /* Update head to the next node */
-		if (*head != NULL)
-			(*head)->prev = NULL;
-		free(current);
-		return (1);
-	}
+    if (index == 0)
+    {
+        /* If the node at index 0 needs to be deleted */
+        tmp = *head;
+        *head = (*head)->next;
+        if (*head)
+            (*head)->prev = NULL;
+        free(tmp), tmp = NULL;
+        return (1);
+    }
 
-	while (current != NULL && i < index)
-	{
-		current = current->next;
-		i++;
-	}
+    count = 1;
+    tmp = (*head)->next;
+    if (tmp)
+    {
+        while (tmp->next)
+        {
+            if (index == count)
+            {
+                /* Update pointers to remove the node at the given index */
+                tmp->prev->next = tmp->next;
+                tmp->next->prev = tmp->prev;
+                free(tmp), tmp = NULL;
+                return (1);
+            }
+            count++, tmp = tmp->next;
+        }
+    }
 
-	if (current == NULL)
-		return (-1);
+    if (tmp && index == count)
+    {
+        /* If the last node needs to be deleted */
+        tmp->prev->next = NULL;
+        free(tmp);
+        return (1);
+    }
 
-	if (current->next != NULL)
-		current->next->prev = current->prev;
-
-	current->prev->next = current->next;
-
-	free(current);
-	return (1);
+    return (-1); /* Return -1 if the deletion is not successful */
 }
