@@ -38,15 +38,15 @@ To determine the space complexity of a function or algorithm, you need to analyz
    - Then, for each of these `n` pointers, memory is allocated for `m` integers (each integer is `sizeof(int)` bytes).
 
 3. **Calculate total memory usage**:
-   - Memory for the outer array `map` is \( n \times \text{{size of pointer}} \).
-   - Memory for each inner array (row) is \( m \times \text{{size of integer}} \).
+   - Memory for the outer array `map` is n * {size of pointer}
+   - Memory for each inner array (row) is m * {size of integer}
    - So, the total memory usage is the sum of memory for `map` and memory for all the inner arrays.
 
 4. **Determine the dominating term**:
-   - As \( n \) and \( m \) both contribute to the total memory usage, the space complexity is \( O(n \times m) \).
+   - As \( n \) and \( m \) both contribute to the total memory usage, the space complexity is O(n * m)
 
 5. **Consider constants and lower-order terms**:
-   - If there are any constants or lower-order terms, they are generally ignored in Big O notation. In this case, since we are primarily concerned with how memory usage scales with input size, we focus on the dominating term \( n \times m \).
+   - If there are any constants or lower-order terms, they are generally ignored in Big O notation. In this case, since we are primarily concerned with how memory usage scales with input size, we focus on the dominating term (n * m).
 
 6. **Conclusion**:
-   - The space complexity of the `allocate_map` function is \( O(n \times m) \), where \( n \) and \( m \) are the dimensions of the 2D array.
+   - The space complexity of the `allocate_map` function is O(n * m), where \( n \) and \( m \) are the dimensions of the 2D array.
