@@ -50,3 +50,13 @@ To determine the space complexity of a function or algorithm, you need to analyz
 
 6. **Conclusion**:
    - The space complexity of the `allocate_map` function is O(n * m), where \( n \) and \( m \) are the dimensions of the 2D array.
+
+The time complexity of a jump search in an array of size \( n \), using a step size of sqrt(n), can be analyzed as follows:
+
+1. **Jumping Phase:** In the jumping phase, we iterate through the array in steps of sqrt(n). This phase takes O(sqrt(n)) time because we perform `n / √n = √n` comparisons.
+
+2. **Linear Search Phase:** After identifying the block where the target element might be located, we perform a linear search within that block. The worst-case scenario for this phase is that the target element is located at the end of the block or is not present at all. Therefore, the linear search phase takes O(sqrt(n)) time.
+
+Considering both phases, the overall time complexity of jump search with a step size of sqrt(n) is O(sqrt(n)) in the average case.
+
+This analysis assumes that the cost of performing comparisons dominates the runtime, and the number of comparisons is proportional to the running time.
