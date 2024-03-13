@@ -15,6 +15,20 @@
 5. Space Complexity of allocate_map function: O(n * m)
    Explanation: The function allocates memory for a 2D array of size n x m using dynamic memory allocation. The space complexity is O(n * m) because it allocates space for n arrays of size m.
 
+```
+int **allocate_map(int n, int m)
+{
+     int **map;
+
+     map = malloc(sizeof(int *) * n);
+     for (size_t i = 0; i < n; i++)
+     {
+          map[i] = malloc(sizeof(int) * m);
+     }
+     return (map);
+}
+```
+
 To determine the space complexity of a function or algorithm, you need to analyze the amount of memory it consumes as a function of the input size. Here's how you can find out the space complexity of the `allocate_map` function:
 
 1. **Identify the variables and data structures**: In this case, the primary data structure is a 2D array represented by a pointer to pointers (`int **map`).
